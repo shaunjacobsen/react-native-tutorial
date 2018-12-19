@@ -1,55 +1,31 @@
-import React from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import React from 'react';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
 
-class AddPlace extends React.Component {
-  state = {
-    placeName: ""
-  };
+import DefaultInput from '../UI/DefaultInput';
 
-  placeNameChangedHandler = e => {
-    this.setState({ placeName: e });
-  };
-
-  placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === "") {
-      return;
-    }
-
-    this.props.onPlaceAdded(this.state.placeName);
-  };
-
-  render() {
-    return (
-      <View style={styles.inputContainer}>
-        <TextInput
-          text={this.props.placeName}
-          onChangeText={this.placeNameChangedHandler}
-          style={styles.input}
-          placeholder="Place"
-        />
-        <Button
-          title="Add"
-          style={styles.button}
-          onPress={this.placeSubmitHandler}
-        />
-      </View>
-    );
-  }
-}
+const AddPlace = props => {
+  return (
+    <DefaultInput
+      placeholder="Place name"
+      value={props.placeName}
+      onChangeText={props.onChangeText}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
   },
   input: {
-    width: "70%"
+    width: '70%',
   },
   button: {
-    width: "30%"
-  }
+    width: '30%',
+  },
 });
 
 export default AddPlace;
